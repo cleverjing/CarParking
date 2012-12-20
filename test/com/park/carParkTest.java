@@ -2,14 +2,18 @@ package com.park;
 
 import junit.framework.TestCase;
 import com.park.carPark;
-
+import org.junit.Before;
 import org.junit.Test;
 
 public class carParkTest extends TestCase {
-	private carPark park= new carPark(10);
+	private carPark park;
 	private String IDCard = "123456789";
 	private String carNumber = "京A12345"; 
 	
+	@Before
+	public void setUp(){
+		this.park = new carPark(10);
+	}
 	@Test
 	public void test_have_empty_space_push_a_car_success() {
 		boolean result = this.park.pushACar(IDCard, carNumber);
@@ -66,5 +70,11 @@ public class carParkTest extends TestCase {
 		Object result2 = getCar.popACar(IDCard);
 		assertEquals(result1, carNumber);
 		assertNull(result2);
+	}
+	
+	@Test
+	public void test_reporting(){
+		String str = "停车场编号:\t0\n\t车位数:\t0\n\t空位数:\t10\n";
+		assertEquals(str,this.park.reporting(0));
 	}
 }

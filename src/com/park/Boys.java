@@ -9,4 +9,6 @@ public abstract class Boys {
 	abstract int getEmptySpace();
 	abstract int getParkNum();
 	abstract String whoAmI();
+	abstract int getTotalParklots();
+	abstract String reporting();
 }

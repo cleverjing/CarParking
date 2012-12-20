@@ -41,4 +41,15 @@ public class parkingBoyTest extends TestCase {
 		int count = this.boy.getEmptySpace();
 		assertEquals(count, this.parkinglots * 10);
 	}
+	
+	@Test
+	public void test_reporting(){
+		String str = new String();
+		for(int i = 0; i < this.parkinglots; i++){
+			str += "停车场编号:\t" + i + "\n\t车位数:\t" + 0 + "\n" + "\t空位数:\t" + this.count[i] + "\n";
+		}
+		str += "\ttotal车位数：\t" + 0 + "\n" + "\ttotal空位数:\t" + 50 + "\n";
+		assertEquals(str, this.boy.reporting());
+		System.out.println(str + "\n\n" + this.boy.reporting());
+	}
 }

@@ -172,6 +172,18 @@ public class parkingManager {
 	}
 	
 	public String reporting(){
+		String str = new String();
+		for(int i = 0; i < this.level.length; i++){
+			Boys[] boys = this.employees.get(this.level[i]);	
+			for(int j = 0; j < boys.length; j++){
+				str += "停车仔编号\t" + j + "\n";
+				str += boys[j].reporting();
+			}
+		}
+		str += "total车位数：\t" + this.cur_parkcounts + "\n" + "total空位数:\t" + this.empty_parkcounts + "\n";
+		return str;
+	}
+	/*public String reporting(){
 		int total = this.total_parklots;
 		int[] carnums = this.getNums("carnums");
 		int[] emptynums = this.getNums("emptynums");
@@ -200,8 +212,46 @@ public class parkingManager {
 				nums[total] += nums[count];
 				count++;
 			}
-			
 		}
 		return nums;
 	}
+	
+	public String reportParkingBoys(){
+		int total_mem = this.total_members;
+		int total_park = this.total_parklots;
+		int[][] carnums = this.getParkingBoyNums("carnums");
+		int[][] emptynums = this.getParkingBoyNums("emptynums");
+		String str = new String();
+		for(int j = 0; j < total_mem; j++){
+			str += "停车仔编号\t" + j + "\n";
+			for(int i = 0; i < total_park; i++){
+				if(carnums[j][i] == 0 && emptynums[j][i] == 0) continue;
+				str += "\t停车场编号:\t" + i + "\n" + "\t车位数:\t" + carnums[j][i] + "\n" + "\t空位数:\t" + emptynums[j][i] + "\n\n";
+			}
+			str += "\ttotal车位数：\t" + carnums[j][total_park] + "\n" + "\ttotal空位数:\t" + emptynums[j][total_park] + "\n\n";
+		}
+		str += "\ttotal车位数：\t" + this.cur_parkcounts + "\n" + "\ttotal空位数:\t" + this.empty_parkcounts + "\n";
+		return str;
+	}
+	public int[][] getParkingBoyNums(String type){
+		int total_mem = this.total_members;
+		int total_park = this.total_parklots;
+		int[][] nums = new int[total_mem][total_park + 1];
+		for(int i = 0; i < this.level.length; i++){
+			Boys[] boys = this.employees.get(this.level[i]);
+			int count = 0;
+			for(int j = 0; j < boys.length; j++){
+				if(boys[j] == null) continue;
+				if(type.equals("carnums")){
+					nums[i][count] = boys[j].getTotalParklots() - boys[j].getEmptySpace();
+				}
+				else if(type.equals("emptynums")){
+					nums[i][count] = boys[j].getEmptySpace();
+				}
+				nums[i][total_park] += nums[i][count];
+				count++;
+			}
+		}
+		return nums;
+	}*/
 }

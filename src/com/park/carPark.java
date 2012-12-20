@@ -38,4 +38,9 @@ public class carPark {
 	public int getEmptySpaces(){
 		return this.totalPark - this.count;
 	}
+	public String reporting(int parknum){
+		String str = new String();
+		str = "\t停车场编号:\t" + parknum + "\n\t\t车位数:\t" + this.count + "\n" + "\t\t空位数:\t" + this.getEmptySpaces() + "\n";
+		return str;
+	}
 }
