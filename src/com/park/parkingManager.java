@@ -2,7 +2,6 @@ package com.park;
 
 import com.park.parkingBoy;
 
-import java.util.Arrays;
 import com.park.smartParkingBoy;
 import com.park.superParkingBoy;
 
@@ -20,7 +19,7 @@ public class parkingManager {
 	private int priority; // -1 -- 随机  0 -- parking boy 1-- smart boy 2 -- super boy 3 -- manager
 	private String getFromWhom; // 经理停车，记录停在哪个停车仔的停车场
 	
-	public parkingManager(int[] nums, int[] parklots, int[][] count){
+	public parkingManager(int[] nums, int[][] count){
 		this.employees = new HashMap<String,Boys[]>();
 		this.carparks = new HashMap<String, carPark[]>();
 		this.cur_parkcounts = 0;
@@ -168,5 +167,35 @@ public class parkingManager {
 		this.empty_parkcounts++;
 		this.cur_parkcounts--;
 		return obj;
+	}
+	
+	public String reporting(){
+		int total = this.empty_parkcounts + this.cur_parkcounts;
+		int[] carnums = this.getNums("carnums");
+		int[] emptynums = this.getNums("emptynums");
+		String str = new String();
+		for(int i = 0; i < total; i++){
+			str += "\t停车场编号:\t" + i + "\n" + "\t车位数:\t" + carnums[i] + "\n" + "\t空位数:\t" + emptynums[i] + "\n\n\n";
+		}
+		return str;
+	}
+	
+	public int[] getNums(String type){
+		int total = this.empty_parkcounts + this.cur_parkcounts;
+		int[] nums = new int[total];
+		int count = 0;
+		for(int i = 0; i < this.level.length; i++){
+			carPark[] parks = this.carparks.get(this.level[i]);
+			for(int j = 0; j < parks.length; j++){
+				if(parks[j] == null) continue;
+				if(type.equals("carnums"))
+					nums[count] = parks[j].getTotal() - parks[j].getEmptySpaces();
+				else if(type.equals("emptynums")){
+					nums[count] = parks[j].getEmptySpaces();
+				}
+				count++;
+			}
+		}
+		return nums;
 	}
 }

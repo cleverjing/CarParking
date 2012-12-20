@@ -7,7 +7,6 @@ import org.junit.Test;
 public class parkingManageerTest extends TestCase {
 	private int[] boys = {5,3,2};
 	private parkingManager pm;
-	private int[] parklots = {1,2,3,4,5,5,4,3,2,1};
 	private int[][] counts = {{10},{10,9},{5,4,3},{5,7,4,8},{2,6,6,7,4},{2,3,4,5,6},{9,8,6,4},{4,2,7},{5,8},{4}};
 	private String[] IDCard = {"123456789", "234567891", "345678912", "456789123","567891234", "678912345"};
 	private String[] carNumber = {"京A12345","京B12345","京A13456","京A56789","京N45673","京J23456"}; 
@@ -15,7 +14,7 @@ public class parkingManageerTest extends TestCase {
 	
 	@Before
 	public void setUp(){
-		this.pm = new parkingManager(boys,parklots,counts);
+		this.pm = new parkingManager(boys,counts);
 	}
 
 	@Test
@@ -51,8 +50,7 @@ public class parkingManageerTest extends TestCase {
 	public void test_have_no_parking_boy_but_choose_it_return_null_successfully(){
 		this.boys[0] = 0;
 		int[][] counts = {{2,3,4,5,6},{9,8,6,4},{4,2,7},{5,8},{4}};
-		int[] parklots = {5,4,3,2,1};
-		this.pm = new parkingManager(this.boys,parklots,counts);
+		this.pm = new parkingManager(this.boys,counts);
 		this.pm.setPriority(0);
 		Boys boy = this.pm.let_a_boy_to_park();
 		assertNull(boy);
@@ -136,7 +134,6 @@ public class parkingManageerTest extends TestCase {
 	public void test_pop_a_car_by_effective_IDCard_pushed_by_manager_successfully(){
 		this.pm.setPriority(3);
 		String ticket = this.pm.pushACar(this.IDCard[0],this.carNumber[0]);
-		System.out.println(ticket);
 		Object result = this.pm.popACar(this.IDCard[0], ticket);
 		assertNotNull(result);
 		assertEquals(result,this.carNumber[0]);
@@ -148,12 +145,77 @@ public class parkingManageerTest extends TestCase {
 	public void test_pop_a_car_by_effective_IDCard_pushed_by_manager_poped_by_parkingboy_successfully(){
 		this.pm.setPriority(3);
 		String ticket = this.pm.pushACar(this.IDCard[0],this.carNumber[0]);
-		System.out.println(ticket);
 		Object result = this.pm.popACar(this.IDCard[0], ticket);
 		assertNotNull(result);
 		assertEquals(result,this.carNumber[0]);
 		int empty_space = this.pm.getEmptySpace();
 		assertEquals(empty_space, this.total_counts);
+	}
+	
+	@Test
+	public void test_reporting_when_park_has_empty_successfully(){
+		int[] carnums = this.pm.getNums("carnums");
+		int[] emptynums = this.pm.getNums("emptynums");
+		assertEquals(carnums.length, this.total_counts);
+		assertEquals(emptynums.length, this.total_counts);
+		for(int i = 0; i < carnums.length; i++){
+			assertEquals(carnums[i],0);
+		}
+		int num = 0;
+		for(int i = 0; i < counts.length; i++){
+			for(int j = 0; j< counts[i].length; j++){
+				assertEquals(emptynums[num++],counts[i][j]);
+			}
+		}
+	}
+	
+	@Test
+	public void test_reporting_when_park_has_one_car_successfully(){
+		this.pm.pushACar(this.IDCard[0], this.carNumber[0]);
+		int[] carnums = this.pm.getNums("carnums");
+		int[] emptynums = this.pm.getNums("emptynums");
+		assertEquals(carnums.length, this.total_counts);
+		assertEquals(emptynums.length, this.total_counts);
+		int count1 = 0, count2 = 0;
+		for(int i = 1; i < carnums.length; i++){
+			if(carnums[i] == 1){
+				count1++;
+				continue;
+			}
+			assertEquals(carnums[i],0);
+		}
+		int num = 0;
+		for(int i = 0; i < counts.length; i++){
+			for(int j = 0; j< counts[i].length; j++){
+				if(emptynums[num] == counts[i][j]-1){
+					count2++;
+					num++;
+					continue;
+				}
+				assertEquals(emptynums[num++],counts[i][j]);
+			}
+		}
+		assertEquals(count1, count2);
+		assertEquals(count1, 1);
+	}
+	
+	@Test
+	public void test_reporting_when_park_has_one_car_then_pop_it_successfully(){
+		String ticket = this.pm.pushACar(this.IDCard[0], this.carNumber[0]);
+		this.pm.popACar(this.IDCard[0], ticket);
+		int[] carnums = this.pm.getNums("carnums");
+		int[] emptynums = this.pm.getNums("emptynums");
+		assertEquals(carnums.length, this.total_counts);
+		assertEquals(emptynums.length, this.total_counts);
+		for(int i = 0; i < carnums.length; i++){
+			assertEquals(carnums[i],0);
+		}
+		int num = 0;
+		for(int i = 0; i < counts.length; i++){
+			for(int j = 0; j< counts[i].length; j++){
+				assertEquals(emptynums[num++],counts[i][j]);
+			}
+		}
 	}
 
 }
