@@ -66,7 +66,7 @@ public class parkingBoy extends Boys {
 		for(int i = 0; i < this.parklist.length; i++){
 			str += this.parklist[i].reporting(i);
 		}
-		str += "\ttotal车位数：\t" + (this.total_parklots - this.empty_parklots) + "\n" + "\ttotal空位数:\t" + this.empty_parklots + "\n";
+		str += "\ttotal车位数:\t" + (this.total_parklots - this.empty_parklots) + "\n" + "\ttotal空位数:\t" + this.empty_parklots + "\n";
 		return str;
 	}
 }

@@ -173,14 +173,16 @@ public class parkingManager {
 	
 	public String reporting(){
 		String str = new String();
+		int count = 0;
 		for(int i = 0; i < this.level.length; i++){
 			Boys[] boys = this.employees.get(this.level[i]);	
 			for(int j = 0; j < boys.length; j++){
-				str += "停车仔编号\t" + j + "\n";
+				str += "停车仔编号:\t" + count + "\n";
 				str += boys[j].reporting();
+				count++;
 			}
 		}
-		str += "total车位数：\t" + this.cur_parkcounts + "\n" + "total空位数:\t" + this.empty_parkcounts + "\n";
+		str += "total车位数:\t" + this.cur_parkcounts + "\n" + "total空位数:\t" + this.empty_parkcounts + "\n";
 		return str;
 	}
 	/*public String reporting(){

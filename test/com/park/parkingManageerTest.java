@@ -221,7 +221,20 @@ public class parkingManageerTest extends TestCase {
 	*/
 	@Test
 	public void test_report(){
-		System.out.println(this.pm.reporting());
+		int[] boys = {1,1,0};
+		int[][] counts = {{2,3},{9,8}};
+		String str = new String();
+		this.pm = new parkingManager(boys,counts);
+		str += "停车仔编号:\t0\n";
+		str += "\t停车场编号:\t0\n\t\t车位数:\t0\n\t\t空位数:\t2\n";
+		str += "\t停车场编号:\t1\n\t\t车位数:\t0\n\t\t空位数:\t3\n";
+		str += "\ttotal车位数:\t0\n\ttotal空位数:\t5\n";
+		str += "停车仔编号:\t1\n";
+		str += "\t停车场编号:\t0\n\t\t车位数:\t0\n\t\t空位数:\t9\n";
+		str += "\t停车场编号:\t1\n\t\t车位数:\t0\n\t\t空位数:\t8\n";
+		str += "\ttotal车位数:\t0\n\ttotal空位数:\t17\n";
+		str += "total车位数:\t0\ntotal空位数:\t22\n";
+		assertEquals(str,this.pm.reporting() );
 	}
 
 }
