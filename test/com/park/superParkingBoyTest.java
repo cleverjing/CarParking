@@ -17,7 +17,13 @@ public class superParkingBoyTest extends TestCase{
 	
 	@Before
 	public void setUp() throws Exception{
-		 boy = new superParkingBoy(this.parkinglots, this.count);
+		carPark[] parklist = new carPark[this.parkinglots];
+		int totals = 0;
+		for(int i=0; i<this.count.length; i++){
+			parklist[i] = new carPark(this.count[i]);
+			totals += count[i];
+		}
+		boy = new superParkingBoy(this.parkinglots, parklist, totals);
 		 this.boy.pushACar("23464752", "¾©A12845");
 		 this.boy.pushACar("523452656","¾©B43212");
 		 this.boy.pushACar("265898525","¾©B2312");

@@ -2,16 +2,13 @@ package com.park;
 
 public class parkingBoy extends Boys {
 	protected carPark[] parklist;
-	protected int parklots;
-	protected int totals;
-	protected int parknum;
+	protected int parklots; // 停车场数
+	protected int totals; // 可用空车位
+	protected int parknum; // 停车场编号
 	
-	public parkingBoy(int parklots, int[] count){
-		this.parklist = new carPark[parklots];
-		for(int i=0; i<parklots; i++){
-			this.parklist[i] = new carPark(count[i]);
-			this.totals += count[i];
-		}
+	public parkingBoy(int parklots, carPark[] list, int totals){
+		this.parklist = list;
+		this.totals = totals;
 		this.parklots = parklots;
 		this.parknum = -1;
 	}

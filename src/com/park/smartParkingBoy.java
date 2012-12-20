@@ -3,8 +3,8 @@ package com.park;
 import com.park.parkingBoy;
 
 public class smartParkingBoy extends parkingBoy {
-	public smartParkingBoy(int parklots, int[] count) {
-		super(parklots, count);
+	public smartParkingBoy(int parklots, carPark[] list, int totals) {
+		super(parklots, list, totals);
 	}
 	
 	@Override

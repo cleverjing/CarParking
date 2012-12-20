@@ -122,4 +122,9 @@ public class parkingManageerTest extends TestCase {
 		int empty_space = this.pm.getEmptySpace();
 		assertEquals(empty_space, this.total_counts - 6);
 	}
+	
+	@Test
+	public void test_push_a_car_into_empty_park_by_manager_successfully(){
+		
+	}
 }

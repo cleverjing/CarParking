@@ -1,8 +1,8 @@
 package com.park;
 
 public class superParkingBoy extends parkingBoy  {
-	public superParkingBoy(int parklots, int[] count) {
-		super(parklots, count);
+	public superParkingBoy(int parklots, carPark[] list, int totals) {
+		super(parklots, list, totals);
 	}
 	
 	public carPark getAnEmptySpace(){
