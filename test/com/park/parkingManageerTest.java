@@ -11,6 +11,7 @@ public class parkingManageerTest extends TestCase {
 	private String[] IDCard = {"123456789", "234567891", "345678912", "456789123","567891234", "678912345"};
 	private String[] carNumber = {"京A12345","京B12345","京A13456","京A56789","京N45673","京J23456"}; 
 	private int total_counts = 167;
+	private int total_parklots = 30;
 	
 	@Before
 	public void setUp(){
@@ -156,8 +157,8 @@ public class parkingManageerTest extends TestCase {
 	public void test_reporting_when_park_has_empty_successfully(){
 		int[] carnums = this.pm.getNums("carnums");
 		int[] emptynums = this.pm.getNums("emptynums");
-		assertEquals(carnums.length, this.total_counts);
-		assertEquals(emptynums.length, this.total_counts);
+		assertEquals(carnums.length - 1, this.total_parklots);
+		assertEquals(emptynums.length - 1, this.total_parklots);
 		for(int i = 0; i < carnums.length; i++){
 			assertEquals(carnums[i],0);
 		}
@@ -174,10 +175,10 @@ public class parkingManageerTest extends TestCase {
 		this.pm.pushACar(this.IDCard[0], this.carNumber[0]);
 		int[] carnums = this.pm.getNums("carnums");
 		int[] emptynums = this.pm.getNums("emptynums");
-		assertEquals(carnums.length, this.total_counts);
-		assertEquals(emptynums.length, this.total_counts);
+		assertEquals(carnums.length - 1, this.total_parklots);
+		assertEquals(emptynums.length - 1, this.total_parklots);
 		int count1 = 0, count2 = 0;
-		for(int i = 1; i < carnums.length; i++){
+		for(int i = 0; i < carnums.length - 1; i++){
 			if(carnums[i] == 1){
 				count1++;
 				continue;
@@ -205,8 +206,8 @@ public class parkingManageerTest extends TestCase {
 		this.pm.popACar(this.IDCard[0], ticket);
 		int[] carnums = this.pm.getNums("carnums");
 		int[] emptynums = this.pm.getNums("emptynums");
-		assertEquals(carnums.length, this.total_counts);
-		assertEquals(emptynums.length, this.total_counts);
+		assertEquals(carnums.length - 1, this.total_parklots);
+		assertEquals(emptynums.length - 1, this.total_parklots);
 		for(int i = 0; i < carnums.length; i++){
 			assertEquals(carnums[i],0);
 		}

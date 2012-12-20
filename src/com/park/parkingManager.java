@@ -18,6 +18,7 @@ public class parkingManager {
 	private int empty_parkcounts;	// 空位数
 	private int priority; // -1 -- 随机  0 -- parking boy 1-- smart boy 2 -- super boy 3 -- manager
 	private String getFromWhom; // 经理停车，记录停在哪个停车仔的停车场
+	private int total_parklots;  // 停车场的总数
 	
 	public parkingManager(int[] nums, int[][] count){
 		this.employees = new HashMap<String,Boys[]>();
@@ -32,8 +33,9 @@ public class parkingManager {
 		for(int i = 0; i < nums.length; i++){
 			this.total_members += nums[i];
 			}
-		// 空车位总数
+		// 空车位总数 和停车场总数
 		for(int i = 0; i < count.length; i++){
+			this.total_parklots += count[i].length;
 			for(int j = 0; j < count[i].length; j++){
 				this.empty_parkcounts += count[i][j];
 			}
@@ -170,31 +172,35 @@ public class parkingManager {
 	}
 	
 	public String reporting(){
-		int total = this.empty_parkcounts + this.cur_parkcounts;
+		int total = this.total_parklots;
 		int[] carnums = this.getNums("carnums");
 		int[] emptynums = this.getNums("emptynums");
 		String str = new String();
 		for(int i = 0; i < total; i++){
 			str += "\t停车场编号:\t" + i + "\n" + "\t车位数:\t" + carnums[i] + "\n" + "\t空位数:\t" + emptynums[i] + "\n\n\n";
 		}
+		str += "\ttotal车位数：\t" + carnums[total] + "\n" + "\ttotal空位数:\t" + emptynums[total] + "\n\n\n";
 		return str;
 	}
 	
 	public int[] getNums(String type){
-		int total = this.empty_parkcounts + this.cur_parkcounts;
-		int[] nums = new int[total];
+		int total = this.total_parklots;
+		int[] nums = new int[total + 1];
 		int count = 0;
 		for(int i = 0; i < this.level.length; i++){
 			carPark[] parks = this.carparks.get(this.level[i]);
 			for(int j = 0; j < parks.length; j++){
 				if(parks[j] == null) continue;
-				if(type.equals("carnums"))
+				if(type.equals("carnums")){
 					nums[count] = parks[j].getTotal() - parks[j].getEmptySpaces();
+				}
 				else if(type.equals("emptynums")){
 					nums[count] = parks[j].getEmptySpaces();
 				}
+				nums[total] += nums[count];
 				count++;
 			}
+			
 		}
 		return nums;
 	}
