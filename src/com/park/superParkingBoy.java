@@ -1,7 +1,7 @@
 package com.park;
 
 public class superParkingBoy extends parkingBoy  {
-	public superParkingBoy(int parklots, int count) {
+	public superParkingBoy(int parklots, int[] count) {
 		super(parklots, count);
 	}
 	
@@ -16,5 +16,9 @@ public class superParkingBoy extends parkingBoy  {
 			}
 		}
 		return cp;
+	}
+	
+	public String whoAmI(){
+		return "super-boy";
 	}
 }

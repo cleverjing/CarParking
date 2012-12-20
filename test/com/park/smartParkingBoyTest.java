@@ -12,13 +12,14 @@ import com.park.carPark;
 
 public class smartParkingBoyTest extends TestCase {
 	private int parkinglots = 5;
-	private int count = 10;
+	private int[] count = {10,8,12,15,5};
 	private String IDCard = "123456789";
 	private String carNumber = "京A12345"; 
-	private smartParkingBoy boy = new smartParkingBoy(this.parkinglots, this.count);;
+	private smartParkingBoy boy = null;
 
 	@Before
-	public void init(){
+	public void setUp() throws Exception{
+		 boy = new smartParkingBoy(this.parkinglots, this.count);
 		 this.boy.pushACar("23464752", "京A12845");
 		 this.boy.pushACar("523452656","京B43212");
 		 this.boy.pushACar("265898525","京B2312");
@@ -32,10 +33,9 @@ public class smartParkingBoyTest extends TestCase {
 		carPark cp = this.boy.getAnEmptySpace();
 		boolean result = this.boy.pushACar(this.IDCard, this.carNumber);
 		assertTrue("success", result);
-		int number = this.boy.getEmptySpace();
-		assertEquals(number, (this.parkinglots * this.count - 3));
-		assertEquals(cp, boy.parklist[1]);
-		
+		int number = cp.getEmptySpaces();
+		assertEquals(number, 10);
+		assertEquals(cp, boy.parklist[3]);
 	}
 	
 	@Test
@@ -44,6 +44,6 @@ public class smartParkingBoyTest extends TestCase {
 		Object result = this.boy.popAcar(this.IDCard);
 		assertNotNull("Success", result);
 		int count = this.boy.getEmptySpace();
-		assertEquals(count, this.parkinglots * this.count);
+		assertEquals(count, 44);
 	}
 }

@@ -10,7 +10,7 @@ import com.park.parkingBoy;
 
 public class parkingBoyTest extends TestCase {
 	private int parkinglots = 5;
-	private int count = 10;
+	private int[] count = {10,10,10,10,10};
 	private String IDCard = "123456789";
 	private String carNumber = "¾©A12345"; 
 	private parkingBoy boy = new parkingBoy(this.parkinglots, this.count);
@@ -20,7 +20,7 @@ public class parkingBoyTest extends TestCase {
 		boolean result = this.boy.pushACar(this.IDCard, this.carNumber);
 		assertTrue("success", result);
 		int number = this.boy.getEmptySpace();
-		assertEquals(number, (this.parkinglots * this.count - 1));
+		assertEquals(number, (this.parkinglots * 10 - 1));
 	}
 	
 	@Test
@@ -29,6 +29,6 @@ public class parkingBoyTest extends TestCase {
 		Object result = this.boy.popAcar(this.IDCard);
 		assertNotNull("Success", result);
 		int count = this.boy.getEmptySpace();
-		assertEquals(count, this.parkinglots * this.count);
+		assertEquals(count, this.parkinglots * 10);
 	}
 }

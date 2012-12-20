@@ -1,0 +1,52 @@
+功能：
+停车场经理管理多个停车仔，让他们停车
+
+任务划分：
+1. 随机停车
+2. 根据停车场内空闲车位停车
+3. 根据停车场空置率停车
+
+测试用例:
+随机选择一个停车仔停车
+指定parking-boy、smart-boy、super-boy停车
+取车
+
+given	5个parking-boy，3个smart-boy, 2个super-boy
+when	随机选择一个停车仔
+should	返回不为null
+
+given	5个parking-boy，3个smart-boy, 2个super-boy
+when	随机选择一个parking-boy
+should	返回parking-boy类型对象
+
+given	5个parking-boy，3个smart-boy, 2个super-boy
+when	选择一个smart-boy
+should	返回smart-boy类型对象
+
+given	5个parking-boy，3个smart-boy, 2个super-boy
+when	选择super-boy
+should	返回super-boy类型对象
+
+given	0个parking-boy，3个smart-boy，2个super-boy
+when	选择parking-boy
+should	返回null
+
+given	停车场空，5个parking-boy，3个smart-boy, 2个super-boy
+when	停车，随机选择一个停车仔
+should	停车成功，空车位-1
+
+given	停车场只停一辆车，5个parking-boy，3个smart-boy, 2个super-boy
+when	有效的凭证取车
+should	取车成功，空车位+1
+
+given	停车场只停一辆车，5个parking-boy，3个smart-boy, 2个super-boy
+when	无效的凭证取车
+should	取车失败
+
+given	停车场空，5个parking-boy，3个smart-boy, 2个super-boy
+when	5辆车停车，随机选择停车仔停车
+should	停车成功，空车位-5
+
+given	停车场空，5个parking-boy，3个smart-boy, 2个super-boy
+when	6辆车停车，前两辆由parking-boy停，第三、四辆有smart-boy停，第五、六辆由super-boy停
+should	停车成功，空车位-6

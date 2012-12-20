@@ -3,10 +3,11 @@ package com.park;
 import com.park.parkingBoy;
 
 public class smartParkingBoy extends parkingBoy {
-	public smartParkingBoy(int parklots, int count) {
+	public smartParkingBoy(int parklots, int[] count) {
 		super(parklots, count);
 	}
 	
+	@Override
 	public carPark getAnEmptySpace(){
 		int max = 0;
 		carPark cp = null;
@@ -18,4 +19,11 @@ public class smartParkingBoy extends parkingBoy {
 		}
 		return cp;
 	}
+	
+	public String whoAmI(){
+		return "smart-boy";
+	}
+	
+	
+	 
 }
