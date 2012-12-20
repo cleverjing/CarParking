@@ -125,6 +125,35 @@ public class parkingManageerTest extends TestCase {
 	
 	@Test
 	public void test_push_a_car_into_empty_park_by_manager_successfully(){
-		
+		this.pm.setPriority(3);
+		String result = this.pm.pushACar(this.IDCard[0],this.carNumber[0]);
+		assertNotNull(result);
+		int empty_space = this.pm.getEmptySpace();
+		assertEquals(empty_space, this.total_counts - 1);
 	}
+	
+	@Test
+	public void test_pop_a_car_by_effective_IDCard_pushed_by_manager_successfully(){
+		this.pm.setPriority(3);
+		String ticket = this.pm.pushACar(this.IDCard[0],this.carNumber[0]);
+		System.out.println(ticket);
+		Object result = this.pm.popACar(this.IDCard[0], ticket);
+		assertNotNull(result);
+		assertEquals(result,this.carNumber[0]);
+		int empty_space = this.pm.getEmptySpace();
+		assertEquals(empty_space, this.total_counts);
+	}
+	
+	@Test
+	public void test_pop_a_car_by_effective_IDCard_pushed_by_manager_poped_by_parkingboy_successfully(){
+		this.pm.setPriority(3);
+		String ticket = this.pm.pushACar(this.IDCard[0],this.carNumber[0]);
+		System.out.println(ticket);
+		Object result = this.pm.popACar(this.IDCard[0], ticket);
+		assertNotNull(result);
+		assertEquals(result,this.carNumber[0]);
+		int empty_space = this.pm.getEmptySpace();
+		assertEquals(empty_space, this.total_counts);
+	}
+
 }

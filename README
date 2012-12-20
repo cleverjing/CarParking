@@ -50,3 +50,22 @@ should	停车成功，空车位-5
 given	停车场空，5个parking-boy，3个smart-boy, 2个super-boy
 when	6辆车停车，前两辆由parking-boy停，第三、四辆有smart-boy停，第五、六辆由super-boy停
 should	停车成功，空车位-6
+
+
+
+功能：
+停车场经理自己随机停车
+
+任务划分：
+1. 停车
+2. 取车
+3. 显示空车位
+
+Given 停车场空，5个parking-boy，3个smart-boy, 2个super-boy
+when 停车, 经理停车
+should 成功，空车位-1
+
+given 停车场只有一辆车，5个parking-boy，3个smart-boy, 2个super-boy
+when 取车，经理存进去的车
+should 取到a,空车位+1
+

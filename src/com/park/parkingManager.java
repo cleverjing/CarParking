@@ -8,8 +8,6 @@ import com.park.superParkingBoy;
 
 import java.util.HashMap;
 
-import java.util.Vector;
-
 public class parkingManager {
 	private String[] level = {"parking-boy", "smart-boy", "super-boy"};
 	private HashMap<String, carPark[]> carparks; // 停车场
@@ -20,6 +18,7 @@ public class parkingManager {
 	private int cur_parkcounts;  // 车位数
 	private int empty_parkcounts;	// 空位数
 	private int priority; // -1 -- 随机  0 -- parking boy 1-- smart boy 2 -- super boy 3 -- manager
+	private String getFromWhom; // 经理停车，记录停在哪个停车仔的停车场
 	
 	public parkingManager(int[] nums, int[] parklots, int[][] count){
 		this.employees = new HashMap<String,Boys[]>();
@@ -29,7 +28,7 @@ public class parkingManager {
 		parkingBoy[] boys = new parkingBoy[nums[0]];
 		smartParkingBoy[] smart_boys = new smartParkingBoy[nums[1]];
 		superParkingBoy[] super_boys = new superParkingBoy[nums[2]];
-		carPark[][] parks = new carPark[3][0];
+		carPark[][] parks = new carPark[3][100];
 		// 成员总数
 		for(int i = 0; i < nums.length; i++){
 			this.total_members += nums[i];
@@ -47,9 +46,11 @@ public class parkingManager {
 		}
 		
 		// 停车场和停车仔初始化
+		int[] count_tmp = {0,0,0};
 		for(int i = 0; i< count.length; i++){
 			carPark[] parklist = new carPark[count[i].length];
 			int totals = 0;
+			int pos = 0;
 			
 			for(int j=0; j<count[i].length; j++){
 				parklist[j] = new carPark(count[i][j]);
@@ -58,17 +59,20 @@ public class parkingManager {
 			
 			if(i < boys.length){
 				boys[i] = new parkingBoy(count[i].length, parklist, totals);
-				parks[0] = Arrays.copyOf(parks[0], parks[0].length + parklist.length);
+				pos = 0;
 			}else if(i < boys.length + smart_boys.length){
 				int key = i-boys.length;
-				parks[1] = Arrays.copyOf(parks[1], parks[1].length + parklist.length);
 				smart_boys[key] = new smartParkingBoy(count[i].length, parklist, totals);
+				pos = 1;
 			}else{
 				int key = i - boys.length - smart_boys.length;
-				parks[2] = Arrays.copyOf(parks[2], parks[2].length + parklist.length);
 				super_boys[key] = new superParkingBoy(count[i].length, parklist, totals);
+				pos = 2;
 			}
-			
+			for(carPark cp:parklist){
+				parks[pos][count_tmp[pos]] = cp;
+				count_tmp[pos]++; 
+			}
 		}
 		this.employees.put(this.level[0], boys);
 		this.employees.put(this.level[1], smart_boys);
@@ -76,12 +80,13 @@ public class parkingManager {
 		for(int i = 0; i < level.length; i++){
 			this.carparks.put(this.level[i], parks[i]);
 		}
+
 	}
 	
 	public Boys let_a_boy_to_park(){
 		int min = 0;
 		Boys just_boy = null;
-		if(this.priority < 0 || this.priority > this.level.length){
+		if(this.priority < 0){
 			for(int j = 0; j < this.level.length; j++){
 				just_boy = this.employees.get(this.level[j])[0];
 				for(int i = 0; i < this.employees.get(this.level[j]).length; i++){
@@ -92,7 +97,7 @@ public class parkingManager {
 					}
 				}
 			}
-		}else if(this.employees.get(this.level[this.priority]).length > 0){
+		}else if(this.priority >= 0 && this.priority < this.level.length && this.employees.containsKey(this.level[this.priority]) && this.employees.get(this.level[this.priority]).length > 0){
 			just_boy = this.employees.get(this.level[this.priority])[0];
 			for(int i = 0; i < this.employees.get(this.level[this.priority]).length; i++){
 				if(work_counts[i] < min){
@@ -106,14 +111,25 @@ public class parkingManager {
 	}
 	
 	private boolean pushcar(String IDcard, String carNumber){
-		return true;
+		for(int i = 0; i< this.level.length; i++){
+			int parklots = this.carparks.get(this.level[i]).length;
+			for(int j = 0; j < parklots; j++){
+				if(this.carparks.get(this.level[i])[j].getEmptySpaces() > 0){
+					this.carparks.get(this.level[i])[j].pushACar(IDcard, carNumber);
+					this.getFromWhom = this.level[i];
+					this.service_num = j;
+					return true;
+				}
+			}
+		}
+		return false; 
 	}
 
 	public String pushACar(String IDcard, String carNumber){
 		Boys just_boy = this.let_a_boy_to_park();
 		boolean pushed;
 		if(just_boy == null){
-			 pushed = this.pushcar(IDcard, carNumber);
+			pushed = this.pushcar(IDcard, carNumber);
 		}else{
 			pushed = just_boy.pushACar(IDcard, carNumber);
 		}
@@ -121,7 +137,10 @@ public class parkingManager {
 			this.work_counts[this.service_num]++;
 			this.empty_parkcounts--;
 			this.cur_parkcounts++;
-			return just_boy.whoAmI() + " " +this.service_num + " " + just_boy.getParkNum();
+			if(just_boy != null)
+				return just_boy.whoAmI() + " " + this.service_num + " " + just_boy.getParkNum();
+			else
+				return this.getFromWhom + " " + this.service_num;
 		}
 		return "";
 	}

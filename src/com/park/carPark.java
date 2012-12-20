@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class carPark {
 	private HashMap<String,String> idcard2carnum;
-	private int count;
-	private int totalPark;
+	private int count;  // 车位数
+	private int totalPark; //停车位总数
 	
 	public carPark(int COUNT){
 		this.count = 0;
