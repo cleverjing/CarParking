@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="胡飞鹄-HP" name="com.park.parkingManageerTest" tests="14" time="0.011" timestamp="2012-12-21T04:01:59">
+  <properties />
+  <testcase classname="com.park.parkingManageerTest" name="test_choose_a_boy_by_randrom_successfully" time="0.0030" />
+  <testcase classname="com.park.parkingManageerTest" name="test_choose_parking_boy_successfully" time="0.0" />
+  <testcase classname="com.park.parkingManageerTest" name="test_choose_smart_boy_successfully" time="0.0" />
+  <testcase classname="com.park.parkingManageerTest" name="test_choose_super_boy_successfully" time="0.0010" />
+  <testcase classname="com.park.parkingManageerTest" name="test_have_no_parking_boy_but_choose_it_return_null_successfully" time="0.0" />
+  <testcase classname="com.park.parkingManageerTest" name="test_push_a_car_by_random_boy_successfully" time="0.0" />
+  <testcase classname="com.park.parkingManageerTest" name="test_pop_a_car_by_effective_IDCard_successfully" time="0.0010" />
+  <testcase classname="com.park.parkingManageerTest" name="test_pop_a_car_by_invaid_IDCard_failed" time="0.0" />
+  <testcase classname="com.park.parkingManageerTest" name="test_push_five_cars_into_empty_park_successfully" time="0.0010" />
+  <testcase classname="com.park.parkingManageerTest" name="test_push_six_cars_into_empty_park_successfully" time="0.0" />
+  <testcase classname="com.park.parkingManageerTest" name="test_push_a_car_into_empty_park_by_manager_successfully" time="0.0010" />
+  <testcase classname="com.park.parkingManageerTest" name="test_pop_a_car_by_effective_IDCard_pushed_by_manager_successfully" time="0.0" />
+  <testcase classname="com.park.parkingManageerTest" name="test_pop_a_car_by_effective_IDCard_pushed_by_manager_poped_by_parkingboy_successfully" time="0.0" />
+  <testcase classname="com.park.parkingManageerTest" name="test_report" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

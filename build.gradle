@@ -1,0 +1,29 @@
+apply plugin: 'java'
+
+dependencies {
+
+    compile files('C:\\F\\java/eclipse\\plugins\\org.junit_4.8.1.v4_8_1_v20100427-1100\\junit.jar')
+	runtime files('C:\\F\\java/eclipse\\plugins\\org.junit_4.8.1.v4_8_1_v20100427-1100\\junit.jar')
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/com/park'
+        }
+    }
+    test {
+        java {
+            srcDir 'test/com/park'
+        }
+    }
+}
+
+
+
+jar.baseName = 'parkingLotsModel'
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+baseName = 'parkingLotsModel'
+}

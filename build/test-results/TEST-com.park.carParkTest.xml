@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="胡飞鹄-HP" name="com.park.carParkTest" tests="8" time="0.04" timestamp="2012-12-21T04:01:59">
+  <properties />
+  <testcase classname="com.park.carParkTest" name="test_have_empty_space_push_a_car_success" time="0.0030" />
+  <testcase classname="com.park.carParkTest" name="test_have_no_empty_space_push_a_car_return_false" time="0.0" />
+  <testcase classname="com.park.carParkTest" name="test_get_the_car_success" time="0.0010" />
+  <testcase classname="com.park.carParkTest" name="test_get_the_car_from_empty_park_false" time="0.0060" />
+  <testcase classname="com.park.carParkTest" name="test_get_the_pushed_in_car_from_park_success" time="0.0" />
+  <testcase classname="com.park.carParkTest" name="test_get_the_pushed_in_car_by_invalid_idcard_fail" time="0.0010" />
+  <testcase classname="com.park.carParkTest" name="test_get_twice_the_pushed_in_car_success" time="0.0" />
+  <testcase classname="com.park.carParkTest" name="test_reporting" time="0.0010" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

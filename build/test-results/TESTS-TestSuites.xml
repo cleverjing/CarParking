@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="胡飞鹄-HP" id="0" name="carParkTest" package="com.park" tests="8" time="0.04" timestamp="2012-12-21T04:01:59">
+      <properties />
+
+      <testcase classname="com.park.carParkTest" name="test_have_empty_space_push_a_car_success" time="0.0030" />
+
+      <testcase classname="com.park.carParkTest" name="test_have_no_empty_space_push_a_car_return_false" time="0.0" />
+
+      <testcase classname="com.park.carParkTest" name="test_get_the_car_success" time="0.0010" />
+
+      <testcase classname="com.park.carParkTest" name="test_get_the_car_from_empty_park_false" time="0.0060" />
+
+      <testcase classname="com.park.carParkTest" name="test_get_the_pushed_in_car_from_park_success" time="0.0" />
+
+      <testcase classname="com.park.carParkTest" name="test_get_the_pushed_in_car_by_invalid_idcard_fail" time="0.0010" />
+
+      <testcase classname="com.park.carParkTest" name="test_get_twice_the_pushed_in_car_success" time="0.0" />
+
+      <testcase classname="com.park.carParkTest" name="test_reporting" time="0.0010" />
+
+      <system-out><![CDATA[]]></system-out>
+
+      <system-err><![CDATA[]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="胡飞鹄-HP" id="1" name="parkingBoyTest" package="com.park" tests="3" time="0.0060" timestamp="2012-12-21T04:01:59">
+      <properties />
+
+      <testcase classname="com.park.parkingBoyTest" name="test_reporting" time="0.0030" />
+
+      <testcase classname="com.park.parkingBoyTest" name="test_parkboy_push_a_car_when_lots_have_space_successly" time="0.0010" />
+
+      <testcase classname="com.park.parkingBoyTest" name="test_parkboy_get_a_car_when_lots_have_a_car_successly" time="0.0" />
+
+      <system-out><![CDATA[]]></system-out>
+
+      <system-err><![CDATA[]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="胡飞鹄-HP" id="2" name="parkingManageerTest" package="com.park" tests="14" time="0.011" timestamp="2012-12-21T04:01:59">
+      <properties />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_choose_a_boy_by_randrom_successfully" time="0.0030" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_choose_parking_boy_successfully" time="0.0" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_choose_smart_boy_successfully" time="0.0" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_choose_super_boy_successfully" time="0.0010" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_have_no_parking_boy_but_choose_it_return_null_successfully" time="0.0" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_push_a_car_by_random_boy_successfully" time="0.0" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_pop_a_car_by_effective_IDCard_successfully" time="0.0010" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_pop_a_car_by_invaid_IDCard_failed" time="0.0" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_push_five_cars_into_empty_park_successfully" time="0.0010" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_push_six_cars_into_empty_park_successfully" time="0.0" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_push_a_car_into_empty_park_by_manager_successfully" time="0.0010" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_pop_a_car_by_effective_IDCard_pushed_by_manager_successfully" time="0.0" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_pop_a_car_by_effective_IDCard_pushed_by_manager_poped_by_parkingboy_successfully" time="0.0" />
+
+      <testcase classname="com.park.parkingManageerTest" name="test_report" time="0.0" />
+
+      <system-out><![CDATA[]]></system-out>
+
+      <system-err><![CDATA[]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="胡飞鹄-HP" id="3" name="smartParkingBoyTest" package="com.park" tests="2" time="0.0030" timestamp="2012-12-21T04:01:59">
+      <properties />
+
+      <testcase classname="com.park.smartParkingBoyTest" name="test_parkboy_get_a_car_when_lots_have_a_car_successly" time="0.0010" />
+
+      <testcase classname="com.park.smartParkingBoyTest" name="test_parkboy_push_cars_when_lots_have_space_successly" time="0.0" />
+
+      <system-out><![CDATA[]]></system-out>
+
+      <system-err><![CDATA[]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="胡飞鹄-HP" id="4" name="superParkingBoyTest" package="com.park" tests="2" time="0.0020" timestamp="2012-12-21T04:01:59">
+      <properties />
+
+      <testcase classname="com.park.superParkingBoyTest" name="test_parkboy_get_a_car_when_lots_have_a_car_successly" time="0.0010" />
+
+      <testcase classname="com.park.superParkingBoyTest" name="test_parkboy_push_cars_when_lots_have_space_successly" time="0.0" />
+
+      <system-out><![CDATA[]]></system-out>
+
+      <system-err><![CDATA[]]></system-err>
+
+  </testsuite>
+</testsuites>
