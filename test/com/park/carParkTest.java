@@ -74,7 +74,7 @@ public class carParkTest extends TestCase {
 	
 	@Test
 	public void test_reporting(){
-		String str = "停车场编号:\t0\n\t车位数:\t0\n\t空位数:\t10\n";
+		String str = "\t停车场编号:\t0\n\t\t车位数:\t0\n\t\t空位数:\t10\n";
 		assertEquals(str,this.park.reporting(0));
 	}
 }
